@@ -45,6 +45,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - use hyper ui for banner(landing page), auth form(not available)
 - Folder Structure in Next.js ---> 
     ![Folder Structure](image.png)
+- for database use drizzle orm with neon database. the steps are ---> 
+    ![alt text](image-1.png)
 
 ## Set-up step by step
 
@@ -52,3 +54,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - hero component
 - clerk authentication
 - side nav bar
+- database setup
