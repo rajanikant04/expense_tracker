@@ -1,8 +1,14 @@
+"use client"
+
 import { Button } from '@/components/ui/button'
+import { SignInButton, UserButton, useUser } from '@clerk/nextjs'
 import Image from 'next/image'
 import React from 'react'
 
 function Header() {
+
+  const {user, isSignedIn} = useUser()
+
   return (
     <div className='p-5 flex justify-between items-center border shadow-md'>
       
@@ -11,7 +17,13 @@ function Header() {
         width={50}
         height={50}
       />
-      <Button>Get started</Button>
+      {
+        isSignedIn? 
+        <UserButton /> : 
+        <SignInButton>
+          <Button>Get started</Button>
+        </SignInButton>
+      }
     </div>
   )
 }
