@@ -1,9 +1,9 @@
 import React from 'react'
 
-function budgets() {
+function Budgets() {
   return (
-    <div>budgets</div>
+    <div>Budgets</div>
   )
 }
 
-export default budgets
+export default Budgets
