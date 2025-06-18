@@ -47,6 +47,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
     ![Folder Structure](image.png)
 - for database use drizzle orm with neon database. the steps are ---> 
     ![alt text](image-1.png)
+- inside useEffect --> no array given- runs infinite times
+                        empty array -  runs once at the starting
+                        with variable - runs when the variable changes
 
 ## Set-up step by step
 

@@ -4,8 +4,8 @@
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.budgets": {
-      "name": "budgets",
+    "public.Budgets": {
+      "name": "Budgets",
       "schema": "",
       "columns": {
         "id": {

@@ -4,17 +4,26 @@ import SideNav from './SideNav'
 import DashboardHeader from './DashboardHeader'
 import { db } from '@/utils/dbConfig';
 import { useUser } from '@clerk/nextjs';
+import { Budgets } from '@/utils/schema';
+import { eq } from 'drizzle-orm';
+import { useRouter } from 'next/navigation';
 
 function DashBoardlayout({children}) {
   const {user} = useUser();
+  const router = useRouter();
   useEffect(()=>{
-    console.log(user);
+    user && checkUserBudgets();
   },[user])
-  // const checkUserrBudgets = async() =>{
-  //    const result = await db.select()
-  //    .from(Budgets)
-  //    .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.email))
-  // }
+  const checkUserBudgets = async() =>{
+     const result = await db.select()
+     .from(Budgets)
+     .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.email))
+     console.log(result);
+
+     if(result?.length==0) {
+      router.replace('/dashboard/budgets')
+     }
+  }
 
   return (
     <div>

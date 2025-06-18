@@ -1,4 +1,4 @@
-CREATE TABLE "budgets" (
+CREATE TABLE "Budgets" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar NOT NULL,
 	"amount" varchar NOT NULL,
