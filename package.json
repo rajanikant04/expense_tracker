@@ -34,7 +34,7 @@
     "@types/node": "22.15.30",
     "@types/react": "19.1.6",
     "dotenv": "^16.5.0",
-    "drizzle-kit": "^0.31.1",
+    "drizzle-kit": "^0.31.2",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.4",
     "typescript": "5.8.3"

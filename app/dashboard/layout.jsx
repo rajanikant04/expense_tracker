@@ -6,24 +6,34 @@ import { db } from '@/utils/dbConfig';
 import { useUser } from '@clerk/nextjs';
 import { Budgets } from '@/utils/schema';
 import { eq } from 'drizzle-orm';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 function DashBoardlayout({children}) {
   const {user} = useUser();
   const router = useRouter();
-  useEffect(()=>{
-    user && checkUserBudgets();
-  },[user])
-  const checkUserBudgets = async() =>{
-     const result = await db.select()
-     .from(Budgets)
-     .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.email))
-     console.log(result);
+  const pathname = usePathname();
+  
+  useEffect(() => {
+    if (user) {
+      checkUserBudgets();
+    }
+  }, [user]);
 
-     if(result?.length==0) {
-      router.replace('/dashboard/budgets')
-     }
-  }
+  const checkUserBudgets = async () => {
+    try {
+      const result = await db.select()
+        .from(Budgets)
+        .where(eq(Budgets.createdBy, user?.primaryEmailAddress?.emailAddress));
+      console.log(result);
+
+      if (result?.length === 0 && pathname === '/dashboard') {
+        router.replace('/dashboard/budgets');
+      }
+    } catch (error) {
+      console.error('Error checking user budgets:', error);
+    }
+  };
+
 
   return (
     <div>

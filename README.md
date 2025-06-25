@@ -50,6 +50,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - inside useEffect --> no array given- runs infinite times
                         empty array -  runs once at the starting
                         with variable - runs when the variable changes
+- next.js has useRoute and usePathname to do operations on route and get pathname respectively.
+- we use params (as prop) to get the data from pathname(e.g.: budgets/34)
+- to use clerk auth, you have to use middleware.ts(catch-all route segment by (.*)), signIn, signUp pages (catch-all route segment).
+- also you have to set the public routes(in the middleware.ts) and environment variables(in .env file)
 
 ## Set-up step by step
 
@@ -58,3 +62,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - clerk authentication
 - side nav bar
 - database setup
+- set new budget dialog using shadcn
+- update budget list using useEffect
+- add skeleton effect(animate-pulse)
+- 

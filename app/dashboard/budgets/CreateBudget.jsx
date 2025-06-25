@@ -18,7 +18,7 @@ import { Budgets } from '@/utils/schema'
 import { useUser } from '@clerk/nextjs'
 import { toast } from 'sonner'
 
-function CreateBudget() {
+function CreateBudget({refreshData}) {
 
   const {user} = useUser();
   const [emojiIcon, setEmojiIcon] = useState('😊');
@@ -37,7 +37,8 @@ function CreateBudget() {
       }).returning({insertedId: Budgets.id});
       
     if(result) {
-      toast.success("New budget created!")
+      refreshData();
+      toast.success("New budget created!");
     }
   }
 
@@ -98,6 +99,7 @@ function CreateBudget() {
     </div>
 
     // we can ignore asChild in button, but not in div case
+    // By using asChild on DialogClose, you're telling it: "Don't render your own close button. Instead, take the <Button> component that's nested inside me and make it the close button."
   )
 }
 
