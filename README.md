@@ -55,6 +55,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - to use clerk auth, you have to use middleware.ts(catch-all route segment by (.*)), signIn, signUp pages (catch-all route segment).
 - also you have to set the public routes(in the middleware.ts) and environment variables(in .env file)
 - the clerk middleware should be written in async await format
+- difference between prisma and drizzle
+    ![alt text](image-2.png)
+- used rechart to add barchart in dashboard
 
 ## Set-up step by step
 
