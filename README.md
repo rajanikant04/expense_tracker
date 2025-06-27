@@ -54,6 +54,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - we use params (as prop) to get the data from pathname(e.g.: budgets/34)
 - to use clerk auth, you have to use middleware.ts(catch-all route segment by (.*)), signIn, signUp pages (catch-all route segment).
 - also you have to set the public routes(in the middleware.ts) and environment variables(in .env file)
+- the clerk middleware should be written in async await format
 
 ## Set-up step by step
 

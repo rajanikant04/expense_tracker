@@ -32,12 +32,23 @@ function SideNav() {
       icon: ShieldCheck,
       path:'/dashboard/upgrade'
     },
-
   ]
+  
   const path = usePathname();
+  
   useEffect(()=>{
     console.log(path);
   },[path])
+
+  // Function to check if current path matches menu item
+  const isActiveRoute = (menuPath) => {
+    if (menuPath === '/dashboard') {
+      // For dashboard, only highlight if exact match
+      return path === '/dashboard'
+    }
+    // For other routes, highlight if current path starts with menu path
+    return path.startsWith(menuPath)
+  }
 
   return (
     <div className='h-screen p-5 border shadow-sm'>
@@ -49,11 +60,10 @@ function SideNav() {
       <div className='mt-5'>
         {menuList.map((menu, index)=> (
           <Link href={menu.path} key={menu.id}>
-
-          <h2 className={`flex gap-2 items-center text-gray-500 font-medium p-5 cursor-pointer rounded-md mb-2 hover:text-blue-600 hover:bg-blue-100 ${path === menu.path ? 'text-green-700 bg-blue-100' : ''}`}>
-            <menu.icon />
-            {menu.name }
-          </h2>
+            <h2 className={`flex gap-2 items-center text-gray-500 font-medium p-5 cursor-pointer rounded-md mb-2 hover:text-blue-600 hover:bg-blue-100 ${isActiveRoute(menu.path) ? 'text-green-700 bg-blue-100' : ''}`}>
+              <menu.icon />
+              {menu.name}
+            </h2>
           </Link>
         ))}
       </div>
