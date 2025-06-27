@@ -66,4 +66,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - set new budget dialog using shadcn
 - update budget list using useEffect
 - add skeleton effect(animate-pulse)
-- 
+- add new expenses
+- display and manage expenses
+- delete budget
+- edit budget
+- add card info with skeleton effect

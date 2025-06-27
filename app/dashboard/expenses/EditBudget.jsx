@@ -4,9 +4,10 @@ import { PenBox } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import EmojiPicker from 'emoji-picker-react';
 import { Input } from '@/components/ui/input'
-import { useUser } from '@clerk/nextjs'
 import { Budgets } from '@/utils/schema'
 import { toast } from 'sonner'
+import { db } from '@/utils/dbConfig';
+import { eq } from 'drizzle-orm';
 import {
   Dialog,
   DialogClose,
@@ -17,8 +18,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { db } from '@/utils/dbConfig';
-import { eq } from 'drizzle-orm';
 
 
 function EditBudget({budgetInfo, refreshData}) {
@@ -28,8 +27,6 @@ function EditBudget({budgetInfo, refreshData}) {
 
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
-
-    const {user} = useUser()
 
     useEffect(() => {
         if (budgetInfo) {
