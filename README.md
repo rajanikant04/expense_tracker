@@ -58,6 +58,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - difference between prisma and drizzle
     ![alt text](image-2.png)
 - used rechart to add barchart in dashboard
+- use aceternity ui for good ui
 
 ## Set-up step by step
 
@@ -74,3 +75,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - delete budget
 - edit budget
 - add card info with skeleton effect
+- budgetList and expenseList
+- quick fixes
