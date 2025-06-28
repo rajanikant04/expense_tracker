@@ -8,7 +8,7 @@ import BudgetItem from '../../budgets/BudgetItem';
 import AddExpense from '../AddExpense';
 import ExpensesListTable from '../ExpensesListTable';
 import { Button } from '@/components/ui/button';
-import { Pen, PenBox, Trash } from 'lucide-react';
+import { ArrowBigLeft, ArrowLeft, Pen, PenBox, SkipBackIcon, Trash } from 'lucide-react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -81,7 +81,11 @@ function ExpensesPage({ params }) {
     
     return (
       <div className='p-10'> 
-        <h2 className='text-2xl font-bold flex justify-between items-center'>My Expenses
+        <h2 className='text-2xl font-bold flex justify-between items-center'>
+          <div className='flex items-center gap-2'>
+            <ArrowLeft className='cursor-pointer hover:bg-gray-300 hover:rounded-full' onClick={()=> route.back() } /> 
+            My Expenses
+          </div>
           <div className='flex gap-2 items-center'>
             <EditBudget budgetInfo = {budgetInfo}
               refreshData={()=> getBudgetInfo()}
@@ -106,9 +110,9 @@ function ExpensesPage({ params }) {
             </AlertDialogContent>
             </AlertDialog>
           </div>
-
-
         </h2>
+
+
         <div className='grid grid-cols-1 md:grid-cols-2 mt-6 gap-5 '>
             {budgetInfo && budgetInfo.id ? (
               <BudgetItem budget={budgetInfo} />
@@ -121,7 +125,6 @@ function ExpensesPage({ params }) {
            />
         </div>
         <div className='mt-4'>
-          <h2 className='font-bold text-lg'>Latest Expenses</h2>
           <ExpensesListTable expensesList={expensesList}
             refreshData={getBudgetInfo}
           />

@@ -2,29 +2,34 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { db } from "@/utils/dbConfig";
 import { Budgets, Expenses } from "@/utils/schema";
+import { Loader } from "lucide-react";
 import moment from "moment";
 import React, { useState } from "react";
 import { toast } from "sonner";
 
 function AddExpense({budgetId, refreshData}) {
 
-    const [name, setName] = useState();
-    const [amount, setAmount] = useState();
+    const [name, setName] = useState('');
+    const [amount, setAmount] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const addNewExpense = async() =>{
+        setLoading(true);
         const result = await db.insert(Expenses).values({
-            name:name,
-            amount:amount,
+          name:name,
+          amount:amount,
             budgetId:budgetId,
             createdAt:moment().format('DD/MM/YYYY') ,
         }).returning({insertedId:Budgets.id});
 
-        console.log(result);
-
+        setAmount('');
+        setName('');
+        
         if(result) {
-            refreshData();
-            toast.success('New Expense Added!')
+          refreshData();
+          toast.success('New Expense Added!')
         }
+        setLoading(false);
 
     }
 
@@ -35,6 +40,7 @@ function AddExpense({budgetId, refreshData}) {
         <h2 className="text-black font-medium my-1 ">Expense Name</h2>
         <Input
           placeholder="e.g. Home Decor"
+          value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
@@ -42,12 +48,17 @@ function AddExpense({budgetId, refreshData}) {
         <h2 className="text-black font-medium my-1 ">Amount</h2>
         <Input
           placeholder="e.g. $1000"
+          value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
       </div>
-      <Button disabled={!(name&&amount)} 
+      <Button disabled={!(name&&amount) || loading} 
         onClick={()=>addNewExpense()}
-        className="mt-3 w-full bg-blue-500 hover:bg-blue-700 cursor-pointer">Add New Expense</Button>
+        className="mt-3 w-full bg-blue-500 hover:bg-blue-700 cursor-pointer">
+          {loading? 
+            <Loader className="animate-spin" />:"Add New Expense"
+          }
+          </Button>
     </div>
   );
 }
